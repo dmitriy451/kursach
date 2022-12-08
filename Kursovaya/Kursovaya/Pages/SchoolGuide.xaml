@@ -1,0 +1,41 @@
+﻿<Window x:Class="Kursovaya.Pages.SchoolGuide"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovaya.Pages"
+        mc:Ignorable="d"
+        Title="SchoolGuide" Height="450" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="192*"/>
+        </Grid.RowDefinitions>
+        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Center" Name="CBoxGroups" Width="100" SelectionChanged="CBoxGroups_SelectionChanged" ItemsSource="{Binding Группы}" DisplayMemberPath="Название_группы"></ComboBox>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <ListView Grid.Row="1" Name="LviewStudents">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding ФИО}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Margin="10" Height="50" Width="200" RenderTransformOrigin="0.505,0.471" Click="Button_Click_1">Добавить студента</Button>
+                <Button Margin="10" Height="50" Width="200" Click="Button_Click_2">Удалить студента</Button>
+                <Button Margin="10" Height="50" Width="200" Click="Button_Click">Редактировать данные студента</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

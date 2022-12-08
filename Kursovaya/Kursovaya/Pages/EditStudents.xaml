@@ -1,0 +1,39 @@
+﻿<Window x:Class="Kursovaya.Pages.EditStudents"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovaya.Pages"
+        mc:Ignorable="d"
+        Title="EditStudents" Height="450" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row ="0">Фамилия</TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="10" Text="{Binding Фамилия}" VerticalAlignment="Center" Grid.Column="1" Grid.Row ="0" Width = "200"></TextBox>
+
+        <TextBlock HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row ="1">Имя</TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="10" Text="{Binding Имя}" VerticalAlignment="Center" Grid.Column="1" Grid.Row ="1" Width = "200"></TextBox>
+
+        <TextBlock HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row ="2">Отчество</TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="10" Text="{Binding Отчество}" VerticalAlignment="Center" Grid.Column="1" Grid.Row ="2" Width = "200"></TextBox>
+
+        <TextBlock HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row ="3">Номер телефона</TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="10" Text="{Binding Номер_телефона}" VerticalAlignment="Center" Grid.Column="1" Grid.Row ="3" Width = "200"></TextBox>
+
+        <TextBlock HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row ="4">группа</TextBlock>
+        <ComboBox Name="CBoxGroups" Grid.Row="4" Grid.Column="1" SelectedItem="{Binding Группы}" Width="150" DisplayMemberPath="Название_группы" Height="30"></ComboBox>
+        
+        <Button HorizontalAlignment="Center" Click="Button_Click" VerticalAlignment="Center" Grid.Row="5" Grid.ColumnSpan="2" Width="100" Height="50">Вdод</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,72 @@
+﻿<Window x:Class="Kursovaya.Pages.TimeTable"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovaya.Pages"
+        mc:Ignorable="d"
+        Title="TimeTable" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <ComboBox Width="150" DisplayMemberPath="{Binding Название_группы}" Height="30"></ComboBox>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="17*"/>
+                <RowDefinition Height="93*"/>
+                <RowDefinition Height="17*"/>
+                <RowDefinition Height="93*"/>
+                <RowDefinition Height="17*"/>
+                <RowDefinition Height="93*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{Binding Monday}" Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Lesson}" FontSize="16"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Grid.Row="3" ItemsSource="{Binding Wednesday}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Lesson}" FontSize="16"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Tuesday}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Lesson}" FontSize="16"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Thursday}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Lesson}" FontSize="16"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Grid.Row="5" ItemsSource="{Binding Friday}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Lesson}" FontSize="16"></TextBlock>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock HorizontalAlignment="Center" FontSize="18">Понедельник</TextBlock>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Center" FontSize="18">Вторник</TextBlock>
+            <TextBlock Grid.Row="2" HorizontalAlignment="Center" FontSize="18">Среда</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontSize="18">Четверг</TextBlock>
+            <TextBlock Grid.Row="4" HorizontalAlignment="Center" FontSize="18">Пятницца</TextBlock>
+        </Grid>
+    </Grid>
+</Window>

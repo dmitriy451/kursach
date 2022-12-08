@@ -1,0 +1,27 @@
+﻿<Window x:Class="Kursovaya.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovaya"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">Авторизация</TextBlock>
+        <TextBlock HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row ="1">Логин</TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="10" Text="{Binding Логин}" VerticalAlignment="Center" Grid.Column="1" Grid.Row ="1" Width = "200"></TextBox>
+        <TextBlock HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center" Grid.Row ="2">Пароль</TextBlock>
+        <TextBox HorizontalAlignment="Left" Margin="10" Text="{Binding Пароль}" VerticalAlignment="Center" Grid.Column="1" Grid.Row ="2" Width = "200"></TextBox>
+        <Button HorizontalAlignment="Center" Click="Button_Click" VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" Width="100" Height="50">Вход</Button>
+    </Grid>
+</Window>

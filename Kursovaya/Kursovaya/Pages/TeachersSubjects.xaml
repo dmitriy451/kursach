@@ -1,0 +1,21 @@
+﻿<Window x:Class="Kursovaya.Pages.TeachersSubjects"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kursovaya.Pages"
+        mc:Ignorable="d"
+        Title="TeachersSubjects" Height="450" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="383*"/>
+        </Grid.RowDefinitions>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding ФИО}"></TextBlock>
+        <DataGrid Grid.Row ="1"  x:Name="DGridSubjects" ItemsSource="{Binding Дисциплины}" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название дисциплины" Binding="{Binding Название_дисциплины}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

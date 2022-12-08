@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Model1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Группы">
+    <Key>
+      <PropertyRef Name="ID группы" />
+    </Key>
+    <Property Name="ID группы" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Название группы" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Тип обучения" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Классный руководитель" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Дисциплины">
+    <Key>
+      <PropertyRef Name="ID дисциплины" />
+    </Key>
+    <Property Name="ID дисциплины" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Название дисциплины" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ID Преподавателя" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Преподаватели">
+    <Key>
+      <PropertyRef Name="ID Преподавателя" />
+    </Key>
+    <Property Name="ID Преподавателя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Имя" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Отчество" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Номер телефона" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="E-mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Пароль" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Логин" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Расписание">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Кабинет" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="День недели" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Дата" Type="date" Nullable="false" />
+    <Property Name="ID пары" Type="int" Nullable="false" />
+    <Property Name="Порядковый номер пары" Type="int" Nullable="false" />
+    <Property Name="ID Группы" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Студенты">
+    <Key>
+      <PropertyRef Name="ID Студента" />
+    </Key>
+    <Property Name="ID Студента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Имя" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Фамилия" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Отчество" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Номер телефона" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Номер пропуска" Type="nchar" MaxLength="10" />
+    <Property Name="ID группы" Type="int" />
+  </EntityType>
+  <EntityType Name="Успеваемость">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID студента" Type="int" Nullable="false" />
+    <Property Name="ID преподавателя" Type="int" Nullable="false" />
+    <Property Name="ID предмета" Type="int" Nullable="false" />
+    <Property Name="оценка" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Группы_Преподаватели">
+    <End Role="Преподаватели" Type="Self.Преподаватели" Multiplicity="1" />
+    <End Role="Группы" Type="Self.Группы" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Преподаватели">
+        <PropertyRef Name="ID Преподавателя" />
+      </Principal>
+      <Dependent Role="Группы">
+        <PropertyRef Name="Классный руководитель" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Дисциплины_Преподаватели">
+    <End Role="Преподаватели" Type="Self.Преподаватели" Multiplicity="1" />
+    <End Role="Дисциплины" Type="Self.Дисциплины" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Преподаватели">
+        <PropertyRef Name="ID Преподавателя" />
+      </Principal>
+      <Dependent Role="Дисциплины">
+        <PropertyRef Name="ID Преподавателя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Расписание_Группы">
+    <End Role="Группы" Type="Self.Группы" Multiplicity="1" />
+    <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Группы">
+        <PropertyRef Name="ID группы" />
+      </Principal>
+      <Dependent Role="Расписание">
+        <PropertyRef Name="ID Группы" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Расписание_Дисциплины">
+    <End Role="Дисциплины" Type="Self.Дисциплины" Multiplicity="1" />
+    <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Дисциплины">
+        <PropertyRef Name="ID дисциплины" />
+      </Principal>
+      <Dependent Role="Расписание">
+        <PropertyRef Name="ID пары" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Студенты_Группы">
+    <End Role="Группы" Type="Self.Группы" Multiplicity="0..1" />
+    <End Role="Студенты" Type="Self.Студенты" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Группы">
+        <PropertyRef Name="ID группы" />
+      </Principal>
+      <Dependent Role="Студенты">
+        <PropertyRef Name="ID группы" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Успеваемость_Преподаватели">
+    <End Role="Преподаватели" Type="Self.Преподаватели" Multiplicity="1" />
+    <End Role="Успеваемость" Type="Self.Успеваемость" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Преподаватели">
+        <PropertyRef Name="ID Преподавателя" />
+      </Principal>
+      <Dependent Role="Успеваемость">
+        <PropertyRef Name="ID преподавателя" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Успеваемость_Расписание">
+    <End Role="Расписание" Type="Self.Расписание" Multiplicity="1" />
+    <End Role="Успеваемость" Type="Self.Успеваемость" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Расписание">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Успеваемость">
+        <PropertyRef Name="ID предмета" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Успеваемость_Студенты">
+    <End Role="Студенты" Type="Self.Студенты" Multiplicity="1" />
+    <End Role="Успеваемость" Type="Self.Успеваемость" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Студенты">
+        <PropertyRef Name="ID Студента" />
+      </Principal>
+      <Dependent Role="Успеваемость">
+        <PropertyRef Name="ID студента" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Model1Container">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Группы" EntityType="Self.Группы" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Дисциплины" EntityType="Self.Дисциплины" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Преподаватели" EntityType="Self.Преподаватели" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Расписание" EntityType="Self.Расписание" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Студенты" EntityType="Self.Студенты" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Успеваемость" EntityType="Self.Успеваемость" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Группы_Преподаватели" Association="Self.FK_Группы_Преподаватели">
+      <End Role="Преподаватели" EntitySet="Преподаватели" />
+      <End Role="Группы" EntitySet="Группы" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Дисциплины_Преподаватели" Association="Self.FK_Дисциплины_Преподаватели">
+      <End Role="Преподаватели" EntitySet="Преподаватели" />
+      <End Role="Дисциплины" EntitySet="Дисциплины" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Расписание_Группы" Association="Self.FK_Расписание_Группы">
+      <End Role="Группы" EntitySet="Группы" />
+      <End Role="Расписание" EntitySet="Расписание" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Расписание_Дисциплины" Association="Self.FK_Расписание_Дисциплины">
+      <End Role="Дисциплины" EntitySet="Дисциплины" />
+      <End Role="Расписание" EntitySet="Расписание" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Студенты_Группы" Association="Self.FK_Студенты_Группы">
+      <End Role="Группы" EntitySet="Группы" />
+      <End Role="Студенты" EntitySet="Студенты" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Успеваемость_Преподаватели" Association="Self.FK_Успеваемость_Преподаватели">
+      <End Role="Преподаватели" EntitySet="Преподаватели" />
+      <End Role="Успеваемость" EntitySet="Успеваемость" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Успеваемость_Расписание" Association="Self.FK_Успеваемость_Расписание">
+      <End Role="Расписание" EntitySet="Расписание" />
+      <End Role="Успеваемость" EntitySet="Успеваемость" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Успеваемость_Студенты" Association="Self.FK_Успеваемость_Студенты">
+      <End Role="Студенты" EntitySet="Студенты" />
+      <End Role="Успеваемость" EntitySet="Успеваемость" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
